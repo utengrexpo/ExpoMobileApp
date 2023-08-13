@@ -31,8 +31,8 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
   List<String> pageNames = const [
-    "Employer Booth Map",
-    "Live Updates",
+    "Booth Map",
+    "Updates",
     "Settings",
   ];
   List<Widget> pages = const [
@@ -48,19 +48,31 @@ class _RootPageState extends State<RootPage> {
           title: Center(child: Text(pageNames[currentPage])),
         ),
         body: pages[currentPage],
-        bottomNavigationBar: NavigationBar(
-          destinations: const [
-            NavigationDestination(
-                icon: Icon(Icons.location_pin), label: 'Employer Booth Map'),
-            NavigationDestination(icon: Icon(Icons.update), label: 'Updates'),
-            NavigationDestination(icon: Icon(Icons.person), label: 'Settings'),
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.location_pin),
+              label: pageNames[0],
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.update),
+              label: pageNames[1],
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.person),
+              label: pageNames[2],
+            ),
           ],
-          onDestinationSelected: (int newPageIndex) {
+          onTap: (int newPageIndex) {
             setState(() {
               currentPage = newPageIndex;
             });
           },
-          selectedIndex: currentPage,
+          currentIndex: currentPage,
+          backgroundColor: colorScheme.surface,
+          selectedFontSize: 0,
+          iconSize: 30,
+          elevation: 30,
         ));
   }
 }
